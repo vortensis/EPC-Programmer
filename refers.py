@@ -1,13 +1,6 @@
 import time
 from selenium import webdriver
 
-options = webdriver.ChromeOptions()
-options.add_argument('--ignore-certificate-errors')
-options.add_argument("--test-type")
-options.binary_location = "/usr/bin/chromium"
-driver = webdriver.Chrome()
-driver.get("http://192.168.0.100")
-
 LoginVals = ["//*[@id='login']/table/tbody/tr[1]/td[2]/input", "admin", "//*[@id='login']/table/tbody/tr[2]/td[2]/input", "//*[@id='login']/table/tbody/tr[3]/td[2]/input[1]"]
 OCvals = ["/html/body/table/tbody/tr/td[2]/table[3]/tbody/tr[3]/td/a", "/html/body/table/tbody/tr/td[1]/table/tbody/tr[1]/td/table/tbody/tr[3]/td/a"]
 DelayVals = ["/html/body/table/tbody/tr/td[2]/form[2]/div/table/tbody/tr[1]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[2]/div/table/tbody/tr[3]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[2]/div/table/tbody/tr[7]/td/input"]
@@ -19,6 +12,13 @@ AccessOutletVals = ["//*[@id='perm1_1']", "//*[@id='perm1_2']", "//*[@id='perm1_
 AdminVals = ["/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[2]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[3]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[4]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[5]/td[1]/input"]
 LANxvals = ["/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[3]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[5]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[6]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[7]/td/input", "/html/body/table/tbody/tr/td/p[3]/a"]
 LANvals = ["192.168.168.206", "192.168.168.168", "8.8.8.8"]
+
+options = webdriver.ChromeOptions()
+options.add_argument('--ignore-certificate-errors')
+options.add_argument("--test-type")
+options.binary_location = "/usr/bin/chromium"
+driver = webdriver.Chrome()
+driver.get("http://192.168.0.100")
 
 def clear(x):
     driver.find_element_by_xpath(x).clear() #clears the default start time
@@ -62,7 +62,9 @@ class funcss:
         driver.find_element_by_xpath(PlaintextVals[1]).click()
         time.sleep(0.5)
     def set_access():
+        clear(AccessnameVals[0])
         driver.find_element_by_xpath(AccessnameVals[0]).send_keys(AccessnameVals[1])
+        clear(AccessnameVals[2])
         driver.find_element_by_xpath(AccessnameVals[2]).send_keys(AccessnameVals[3])
         time.sleep(0.1)
         driver.find_element_by_xpath(AccessOutletVals[0]).click()
@@ -74,19 +76,19 @@ class funcss:
         driver.find_element_by_xpath(AccessOutletVals[6]).click()
         driver.find_element_by_xpath(AccessOutletVals[7]).click()
         driver.find_element_by_xpath(AccessOutletVals[8]).click()
-    def set_admincred():
+    def set_admincred(t,u):
         time.sleep(0.5)
-        driver.find_element_by_xpath(AdminVals[0]).send_keys("1234")
-        driver.find_element_by_xpath(AdminVals[1]).send_keys("CAL1108cal")
-        driver.find_element_by_xpath(AdminVals[2]).send_keys("CAL1108cal")
+        driver.find_element_by_xpath(AdminVals[0]).send_keys(u)
+        driver.find_element_by_xpath(AdminVals[1]).send_keys(t)
+        driver.find_element_by_xpath(AdminVals[2]).send_keys(t)
         driver.find_element_by_xpath(AdminVals[3]).click()
         time.sleep(0.5)
         return
-    def set_lan():
+    def set_lan(q,w,e):
         clear(LANxvals[0])
-        driver.find_element_by_xpath(LANxvals[0]).send_keys(LANvals[0])
-        driver.find_element_by_xpath(LANxvals[1]).send_keys(LANvals[1])
-        driver.find_element_by_xpath(LANxvals[2]).send_keys(LANvals[2])
+        driver.find_element_by_xpath(LANxvals[0]).send_keys(q)
+        driver.find_element_by_xpath(LANxvals[1]).send_keys(w)
+        driver.find_element_by_xpath(LANxvals[2]).send_keys(e)
         driver.find_element_by_xpath(LANxvals[3]).click()
         driver.switch_to_alert().accept()
         time.sleep(1)
