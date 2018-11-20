@@ -12,6 +12,7 @@ AccessOutletVals = ["//*[@id='perm1_1']", "//*[@id='perm1_2']", "//*[@id='perm1_
 AdminVals = ["/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[2]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[3]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[4]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[9]/div[2]/table/tbody/tr[5]/td[1]/input"]
 LANxvals = ["/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[3]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[5]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[6]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[6]/div/table/tbody/tr[7]/td/input", "/html/body/table/tbody/tr/td/p[3]/a"]
 LANvals = ["192.168.168.206", "192.168.168.168", "8.8.8.8"]
+Unitxvals = ["/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[1]/td[2]/input","/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[2]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[3]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[4]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[5]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[6]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[7]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[8]/td[2]/input", "/html/body/table/tbody/tr/td[2]/form[1]/div/table/tbody/tr[9]/td[2]/input"]
 
 options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
@@ -41,6 +42,7 @@ class funcss:
         driver.find_element_by_xpath(DelayVals[0]).send_keys("3")
         clear(DelayVals[1])
         driver.find_element_by_xpath(DelayVals[1]).send_keys("3")
+        time.sleep(1)
         driver.find_element_by_xpath(DelayVals[2]).click()
         time.sleep(1)
         return
@@ -95,3 +97,28 @@ class funcss:
         driver.switch_to_default_content()
         driver.find_element_by_xpath("/html/body/table/tbody/tr/td/p[3]/a").click()
         return
+    def set_units(a,b,c,d,e,f,g,h,i):
+        time.sleep(1)
+        clear(Unitxvals[0])
+        driver.find_elements_by_xpath(Unitxvals[0]).send_keys(a)
+        clear(Unitxvals[1])
+        driver.find_elements_by_xpath(Unitxvals[1]).send_keys("testt")
+        clear(Unitxvals[2])
+        driver.find_elements_by_xpath(Unitxvals[2]).send_keys(c)
+        clear(Unitxvals[3])
+        driver.find_elements_by_xpath(Unitxvals[3]).send_keys(d)
+        clear(Unitxvals[4])
+        driver.find_elements_by_xpath(Unitxvals[4]).send_keys(e)
+        clear(Unitxvals[5])
+        driver.find_elements_by_xpath(Unitxvals[5]).send_keys(f)
+        clear(Unitxvals[6])
+        driver.find_elements_by_xpath(Unitxvals[6]).send_keys(g)
+        clear(Unitxvals[7])
+        driver.find_elements_by_xpath(Unitxvals[7]).send_keys(h)
+        clear(Unitxvals[8])
+        driver.find_elements_by_xpath(Unitxvals[8]).send_keys(i)
+        return
+
+funcss.login("CAL1108cal")
+funcss.set_outlet()
+funcss.set_delay()
